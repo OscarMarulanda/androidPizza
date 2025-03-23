@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">PizzeriaLogin</string>
+    <string-array name="sabores">
+        <item>Hawaiana</item>
+        <item>Carnes</item>
+        <item>Mexicana</item>
+        <item>Pollo champiñones</item>
+        <item>Carne tradicional</item>
+        <item>Platano maduro</item>
+        <item>Mango tocineta</item>
+        <item>Ranchera</item>
+    </string-array>
+</resources>
