@@ -9,6 +9,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
+import androidx.appcompat.app.AlertDialog
 
 class Reservar : AppCompatActivity() {
     private lateinit var editTextDate: EditText
@@ -115,6 +116,56 @@ class Reservar : AppCompatActivity() {
         }
     }
 
+    private fun showConfirmationDialog(date: String, time: String, totalSlices: Int, totalPrice: Double) {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Confirmar Reserva")
+
+        // Build the message with flavors, slices, date, time, and price
+        val message = StringBuilder()
+        message.append("Fecha: $date\n")
+        message.append("Hora: $time\n\n")
+        message.append("Pizzas seleccionadas:\n")
+
+        for (i in 0 until spinnerContainer.childCount) {
+            val row = spinnerContainer.getChildAt(i) as LinearLayout
+            val spinner = row.getChildAt(0) as Spinner
+            val slicesInput = row.getChildAt(1) as EditText
+
+            val selectedItem = spinner.selectedItem as SpinnerItem
+            val saborName = selectedItem.nombre
+            val numSlices = slicesInput.text.toString().toIntOrNull() ?: 0
+
+            if (numSlices > 0) {
+                message.append("- $saborName: $numSlices porciones\n")
+            }
+        }
+
+        message.append("\nTotal a pagar: $totalPrice COP")
+
+        builder.setMessage(message.toString())
+
+        // Buttons for confirmation or cancellation
+        builder.setPositiveButton("Confirmar") { _, _ ->
+            val fechaHoraEntrega = "$date $time"
+            val usuarioDocumento = SessionManager.userId ?: ""
+
+            val reservaRequest = ReservaRequest(
+                FechaHoraEntrega = fechaHoraEntrega,
+                PrecioTotal = totalPrice,
+                UsuarioDocumento = usuarioDocumento
+            )
+
+            sendReservaRequest(reservaRequest) // Proceed with reservation
+        }
+
+        builder.setNegativeButton("Cancelar") { dialog, _ ->
+            dialog.dismiss() // Close dialog if canceled
+        }
+
+        // Show the dialog
+        builder.create().show()
+    }
+
     private fun setupReservaButton() {
         buttonReservar.setOnClickListener {
             val date = editTextDate.text.toString()
@@ -132,19 +183,12 @@ class Reservar : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            val fechaHoraEntrega = "$date $time"
-            val precioTotal = totalSlices * pricePerSlice.toDouble()
+            val totalPrice = totalSlices * pricePerSlice.toDouble()
 
-            val reservaRequest = ReservaRequest(
-                FechaHoraEntrega = fechaHoraEntrega,
-                PrecioTotal = precioTotal,
-                UsuarioDocumento = usuarioDocumento
-            )
-
-            sendReservaRequest(reservaRequest)
+            // Show confirmation dialog before making the reservation
+            showConfirmationDialog(date, time, totalSlices, totalPrice)
         }
     }
-
     private fun getTotalSlices(): Int {
         var totalSlices = 0
         for (i in 0 until spinnerContainer.childCount) {
