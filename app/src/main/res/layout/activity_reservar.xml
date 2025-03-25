@@ -5,64 +5,106 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#121212"
     tools:context=".Reservar">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="16dp"
+        android:gravity="center"
+        android:layout_margin="16dp">
 
+        <!-- Date & Time Selection -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:weightSum="2">
 
             <EditText
                 android:id="@+id/editTextDate"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:hint="Select Date"
+                android:hint="Seleccionar Fecha"
                 android:focusable="false"
-                android:minHeight="48dp"
                 android:clickable="true"
-                android:background="@android:drawable/editbox_background"
-                android:padding="10dp" />
+                android:background="@drawable/rounded_edittext"
+                android:textColor="#A8E06E"
+                android:textColorHint="#FFFFFFFF"
+                android:padding="12dp"
+                android:textSize="16sp"
+                android:minHeight="50dp"
+                android:gravity="center" />
+
+            <Space
+                android:layout_width="10dp"
+                android:layout_height="wrap_content" />
 
             <EditText
                 android:id="@+id/editTextTime"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:hint="Select Time"
-                android:minHeight="48dp"
+                android:hint="Seleccionar Hora"
                 android:focusable="false"
                 android:clickable="true"
-                android:background="@android:drawable/editbox_background"
-                android:padding="10dp" />
-
+                android:background="@drawable/rounded_edittext"
+                android:textColor="#A8E06E"
+                android:textColorHint="#FFFFFFFF"
+                android:padding="12dp"
+                android:textSize="16sp"
+                android:minHeight="50dp"
+                android:gravity="center" />
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/spinnersContainer"
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="12dp" />
+
+        <!-- Container for pizza selection -->
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"/>
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/rounded_container"
+            android:padding="8dp">
 
+            <LinearLayout
+                android:id="@+id/spinnersContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"/>
+        </ScrollView>
+
+        <!-- Add Pizza Flavor Button -->
         <Button
             android:id="@+id/buttonAddSpinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Agregar Sabor"
-            android:layout_marginTop="16dp"/>
+            android:textSize="16sp"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#4CAF50"
+            android:padding="12dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="8dp"/>
 
+        <!-- Confirm Reservation Button -->
         <Button
             android:id="@+id/buttonReservar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Reservar"
-            android:layout_marginTop="16dp"/>
-
+            android:textSize="16sp"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#388E3C"
+            android:padding="12dp"
+            android:layout_gravity="center"/>
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

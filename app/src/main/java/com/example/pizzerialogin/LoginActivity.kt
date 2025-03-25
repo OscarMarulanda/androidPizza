@@ -70,7 +70,7 @@ class LoginActivity : AppCompatActivity() {
                             Toast.makeText(applicationContext, "Inicio de sesión exitoso", Toast.LENGTH_LONG).show()
 
                             // Navigate to another activity (e.g., HomeActivity)
-                            val intent = Intent(this@LoginActivity, Reservar::class.java)
+                            val intent = Intent(this@LoginActivity, MostrarReservas::class.java)
                             startActivity(intent)
                             finish()
                         } else {

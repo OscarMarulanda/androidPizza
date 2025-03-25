@@ -7,6 +7,7 @@ import retrofit2.http.Body
 import retrofit2.http.Path
 
 import com.example.pizzerialogin.User
+import retrofit2.Response
 
 interface ApiService {
 
@@ -24,5 +25,8 @@ interface ApiService {
 
     @POST("linea")
     fun createLinea(@Body lineaRequest: LineaRequest): Call<LineaResponse>
+
+    @GET("reserva")
+    suspend fun getReservas(): Response<List<MostrarReservaResponse>>
 
 }

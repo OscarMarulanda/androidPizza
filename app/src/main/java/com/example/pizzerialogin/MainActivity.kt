@@ -84,9 +84,8 @@ class MainActivity : AppCompatActivity() {
         RetrofitClient.instance.getUserById(userId).enqueue(object : Callback<ApiResponse> {
             override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
                 if (response.isSuccessful) {
-                    val users = response.body()
-                    users?.let {
-                        Log.d("API", "User: ${response.body()}")
+                    response.body()?.usuario?.let { user ->
+                        Log.d("API", "User's Name: ${user.usuarioPrimerNombre}")
                     }
                 } else {
                     Log.e("API", "Response error: ${response.errorBody()?.string()}")

@@ -2,6 +2,7 @@ package com.example.pizzerialogin
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.graphics.Color
 import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -104,9 +105,11 @@ class Reservar : AppCompatActivity() {
             editTextSlices.layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 0.5f)
             editTextSlices.hint = "Porciones"
             editTextSlices.inputType = android.text.InputType.TYPE_CLASS_NUMBER
+            editTextSlices.setTextColor(Color.parseColor("#A8E06E"))
 
             val deleteButton = Button(this)
             deleteButton.text = "❌"
+            deleteButton.setBackgroundColor(Color.BLACK)
             deleteButton.setOnClickListener { spinnerContainer.removeView(spinnerRow) }
 
             spinnerRow.addView(newSpinner)
