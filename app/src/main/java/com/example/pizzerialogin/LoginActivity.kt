@@ -58,11 +58,13 @@ class LoginActivity : AppCompatActivity() {
                     response.body()?.let {
                         if (it.status == 200) {
                             val token = it.token
+                            val userType = it.usuario.idTipoUsuario
 
                             // Save token in SharedPreferences
                             sharedPreferences = getSharedPreferences("APP_PREFS", MODE_PRIVATE)
                             sharedPreferences.edit().putString("TOKEN", token).apply()
                             sharedPreferences.edit().putString("userId", usuarioDocumento).apply()
+                            sharedPreferences.edit().putInt("userType", userType).apply()
 
                             val userId = sharedPreferences.getString("userId", "No ID found")
                             Log.d("UserID", userId ?: "No ID found")
@@ -70,8 +72,13 @@ class LoginActivity : AppCompatActivity() {
                             Toast.makeText(applicationContext, "Inicio de sesión exitoso", Toast.LENGTH_LONG).show()
 
                             // Navigate to another activity (e.g., HomeActivity)
-                            val intent = Intent(this@LoginActivity, MostrarReservas::class.java)
-                            startActivity(intent)
+                            if (userType == 3) {
+                                val intent = Intent(this@LoginActivity, Reservar::class.java)
+                                startActivity(intent)
+                            }else{
+                                val intent = Intent(this@LoginActivity, MostrarReservas::class.java)
+                                startActivity(intent)
+                            }
                             finish()
                         } else {
                             Toast.makeText(applicationContext, "Error: ${it.message}", Toast.LENGTH_LONG).show()

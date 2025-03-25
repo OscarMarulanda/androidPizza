@@ -25,7 +25,13 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        fetchUserById("1124217751")
+        UserRepository.fetchUserById("1124217751") { user ->
+            if (user != null) {
+                Log.d("MainActivity", "Fetched User: ${user.usuarioPrimerNombre}")
+            } else {
+                Log.e("MainActivity", "Failed to fetch user")
+            }
+        }
 
         val continuar = findViewById<Button>(R.id.button)
         val registrar = findViewById<Button>(R.id.buttonResgister)
@@ -79,22 +85,4 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-
-    private fun fetchUserById(userId: String) {
-        RetrofitClient.instance.getUserById(userId).enqueue(object : Callback<ApiResponse> {
-            override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
-                if (response.isSuccessful) {
-                    response.body()?.usuario?.let { user ->
-                        Log.d("API", "User's Name: ${user.usuarioPrimerNombre}")
-                    }
-                } else {
-                    Log.e("API", "Response error: ${response.errorBody()?.string()}")
-                }
-            }
-
-            override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
-                Log.e("API", "API Call Failed", t)
-            }
-        })
-    }
 }

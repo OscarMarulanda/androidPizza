@@ -9,5 +9,12 @@ data class MostrarReservaResponse(
     @SerializedName("FechaHoraEntrega") val fechaHoraEntrega: String,
     @SerializedName("PrecioTotal") val precioTotal: Int,
     @SerializedName("UsuarioDocumento") val usuarioDocumento: String,
-    @SerializedName("updated_at") val updatedAt: String?
+    @SerializedName("updated_at") val updatedAt: String?,
+    @SerializedName("usuario") val usuario: Usuario?
+)
+
+data class Usuario(
+    @SerializedName("UsuarioDocumento") val usuarioDocumento: String,
+    @SerializedName("UsuarioPrimerNombre") val usuarioPrimerNombre: String,
+    @SerializedName("UsuarioApellido") val usuarioApellido: String
 )

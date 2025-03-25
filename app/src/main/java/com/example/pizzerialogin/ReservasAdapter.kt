@@ -27,7 +27,7 @@ class ReservasAdapter(private val reservas: List<MostrarReservaResponse>) :
         val reserva = reservas[position]
         holder.txtIdPedido.text = "ID: ${reserva.idPedido}"
         holder.txtFechaEntrega.text = "Entrega: ${reserva.fechaHoraEntrega ?: "No especificada"}"
-        holder.txtUsuario.text = "Usuario: ${reserva.usuarioDocumento ?: "Desconocido"}"
+        holder.txtUsuario.text = "Usuario: ${reserva.usuario?.usuarioPrimerNombre ?: "Desconocido"} " + (reserva.usuario?.usuarioApellido ?: "")
         holder.txtPrecioTotal.text = "Precio: ${reserva.precioTotal ?: "Desconocido"}"
 
     }
