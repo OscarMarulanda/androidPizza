@@ -2,11 +2,20 @@ package com.example.pizzerialogin
 import android.view.View
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import android.graphics.Color
 
 
-class ReservasAdapter(private val reservas: List<MostrarReservaResponse>) :
+class ReservasAdapter(
+    private val reservas: List<MostrarReservaResponse>,
+    private val apiService: ApiService) :
     RecyclerView.Adapter<ReservasAdapter.ReservaViewHolder>() {
 
     class ReservaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -15,6 +24,7 @@ class ReservasAdapter(private val reservas: List<MostrarReservaResponse>) :
         val txtUsuario: TextView = itemView.findViewById(R.id.txtUsuario)
         val txtPrecioTotal: TextView = itemView.findViewById(R.id.txtPrecioTotal)
         val txtLineasReserva: TextView = itemView.findViewById(R.id.txtLineasReserva)
+        val btnToggleEntrega: Button = itemView.findViewById(R.id.btnToggleEntrega)
 
     }
 
@@ -44,6 +54,37 @@ class ReservasAdapter(private val reservas: List<MostrarReservaResponse>) :
                 holder.txtLineasReserva.visibility = View.VISIBLE
             } else {
                 holder.txtLineasReserva.visibility = View.GONE
+            }
+        }
+
+        val verde = Color.parseColor("#4CAF50") // Green
+        val naranja = Color.parseColor("#FF9800") // Orange
+
+        holder.btnToggleEntrega.text = if (reserva.entregada == 1) "Entregada" else "No Entregada"
+        holder.btnToggleEntrega.setBackgroundColor(if (reserva.entregada == 1) verde else naranja)
+
+        holder.btnToggleEntrega.setOnClickListener {
+            var newStatus = if (reserva.entregada == 1) 0 else 1
+            val updateRequest = UpdateEntregaRequest(reserva.idPedido, newStatus)
+
+            CoroutineScope(Dispatchers.IO).launch {
+                try {
+                    val response = apiService.updateEntrega(updateRequest)
+                    if (response.isSuccessful && response.body() != null) {
+                        withContext(Dispatchers.Main) {
+                            reserva.entregada = newStatus
+                            notifyItemChanged(position)
+                        }
+                    } else {
+                        withContext(Dispatchers.Main) {
+                            Toast.makeText(holder.itemView.context, "Error al actualizar estado", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                } catch (e: Exception) {
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(holder.itemView.context, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+                    }
+                }
             }
         }
 

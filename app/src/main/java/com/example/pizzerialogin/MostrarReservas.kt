@@ -35,7 +35,7 @@ class MostrarReservas: AppCompatActivity() {
                 val response = apiService.getReservas()
                 if (response.isSuccessful && response.body() != null) {
                     val reservas = response.body()!!
-                    reservasAdapter = ReservasAdapter(reservas)
+                    reservasAdapter = ReservasAdapter(reservas, apiService)
                     recyclerView.adapter = reservasAdapter
                 } else {
                     Toast.makeText(this@MostrarReservas, "Error al obtener datos", Toast.LENGTH_SHORT).show()

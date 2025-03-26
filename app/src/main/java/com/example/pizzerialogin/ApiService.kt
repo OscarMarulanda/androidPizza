@@ -8,6 +8,7 @@ import retrofit2.http.Path
 
 import com.example.pizzerialogin.User
 import retrofit2.Response
+import retrofit2.http.PUT
 
 interface ApiService {
 
@@ -28,5 +29,8 @@ interface ApiService {
 
     @GET("reserva")
     suspend fun getReservas(): Response<List<MostrarReservaResponse>>
+
+    @PUT("reserva")
+    suspend fun updateEntrega(@Body request: UpdateEntregaRequest): Response<UpdateEntregaResponse>
 
 }
