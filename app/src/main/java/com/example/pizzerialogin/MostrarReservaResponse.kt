@@ -10,11 +10,18 @@ data class MostrarReservaResponse(
     @SerializedName("PrecioTotal") val precioTotal: Int,
     @SerializedName("UsuarioDocumento") val usuarioDocumento: String,
     @SerializedName("updated_at") val updatedAt: String?,
-    @SerializedName("usuario") val usuario: Usuario?
+    @SerializedName("usuario") val usuario: Usuario?,
+    @SerializedName("lineas") val lineas: List<LineaDeReserva>
 )
 
 data class Usuario(
     @SerializedName("UsuarioDocumento") val usuarioDocumento: String,
     @SerializedName("UsuarioPrimerNombre") val usuarioPrimerNombre: String,
     @SerializedName("UsuarioApellido") val usuarioApellido: String
+)
+
+data class LineaDeReserva(
+    @SerializedName("idSabor") val idSabor: String,
+    @SerializedName("idPedido") val idPedido: Int,
+    @SerializedName("NumeroPorciones") val numeroPorciones: Int
 )
