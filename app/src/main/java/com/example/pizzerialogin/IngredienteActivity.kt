@@ -26,13 +26,17 @@ class IngredienteActivity : AppCompatActivity() {
         fetchIngredientes()
 
         val btnViewReservas: Button = findViewById(R.id.btnViewReservas)
+        val btnAgregarIngredientes: Button = findViewById(R.id.btnAgregarIngredientes)
 
         btnViewReservas.setOnClickListener {
             val intent = Intent(this, MostrarReservas::class.java)
             startActivity(intent)
         }
 
-
+        btnAgregarIngredientes.setOnClickListener{
+            val intent = Intent(this, OrdenCompraActivity::class.java)
+            startActivity(intent)
+        }
 
     }
 
