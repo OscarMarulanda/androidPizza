@@ -3,36 +3,63 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:gravity="center"
+    android:background="#121212">  <!-- Dark Background -->
 
     <EditText
         android:id="@+id/editTextUsuario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="48dp"
-        android:hint="Documento de Usuario" />
+        android:hint="Documento de Usuario"
+        android:background="@android:color/transparent"
+        android:padding="12dp"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#80C683"
+        android:gravity="center"
+        android:backgroundTint="#80C683" />
 
     <EditText
         android:id="@+id/editTextCorreo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Correo Electrónico"
         android:minHeight="48dp"
-        android:inputType="textEmailAddress" />
+        android:hint="Correo Electrónico"
+        android:inputType="textEmailAddress"
+        android:background="@android:color/transparent"
+        android:padding="12dp"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#80C683"
+        android:gravity="center"
+        android:backgroundTint="#80C683"
+        android:layout_marginTop="12dp"/>
 
     <EditText
         android:id="@+id/editTextContrasena"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Contraseña"
         android:minHeight="48dp"
-        android:inputType="textPassword" />
+        android:hint="Contraseña"
+        android:inputType="textPassword"
+        android:background="@android:color/transparent"
+        android:padding="12dp"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#80C683"
+        android:gravity="center"
+        android:backgroundTint="#80C683"
+        android:layout_marginTop="12dp"/>
 
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="48dp"
-        android:text="Iniciar Sesión" />
+        android:text="Iniciar Sesión"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:backgroundTint="#008000"
+        android:layout_marginTop="20dp"
+        android:gravity="center"/>
 
 </LinearLayout>

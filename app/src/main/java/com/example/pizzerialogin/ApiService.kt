@@ -24,6 +24,12 @@ interface ApiService {
     @POST("reserva")
     fun createReserva(@Body request: ReservaRequest): Call<ReservaResponse>
 
+    @POST("orden-compra")
+    fun createOrdenCompra(@Body request: OrdenCompraRequest): Call<OrdenCompraResponse>
+
+    @POST("orden-ingrediente")
+    suspend fun postOrdenIngrediente(@Body request: OrdenIngredienteRequest): Response<OrdenIngredienteResponse>
+
     @POST("linea")
     fun createLinea(@Body lineaRequest: LineaRequest): Call<LineaResponse>
 
@@ -32,5 +38,8 @@ interface ApiService {
 
     @PUT("reserva")
     suspend fun updateEntrega(@Body request: UpdateEntregaRequest): Response<UpdateEntregaResponse>
+
+    @GET("ingredientes")
+    suspend fun getIngredientes(): Response<List<Ingrediente>>
 
 }

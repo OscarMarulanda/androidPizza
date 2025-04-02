@@ -34,3 +34,30 @@ class SpinnerAdapter(context: Context, private val items: List<SpinnerItem>) :
         return view
     }
 }
+
+class SpinnerAdapterOrden(context: Context, private val items: List<SpinnerOrden>) :
+    ArrayAdapter<SpinnerOrden>(context, 0, items) {
+
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+        return createView(position, convertView, parent)
+    }
+
+    override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup): View {
+        return createView(position, convertView, parent)
+    }
+
+    private fun createView(position: Int, convertView: View?, parent: ViewGroup): View {
+        val view = convertView ?: LayoutInflater.from(context)
+            .inflate(R.layout.spinner_item, parent, false)
+
+        val item = items[position]
+
+
+        val textView = view.findViewById<TextView>(R.id.itemText)
+
+
+        textView.text = item.nombre
+
+        return view
+    }
+}

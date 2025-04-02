@@ -1,6 +1,8 @@
 package com.example.pizzerialogin
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -27,6 +29,19 @@ class MostrarReservas: AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         obtenerReservas()
+
+        val btnViewIngredientes: Button = findViewById(R.id.btnViewIngredientes)
+        val btnAddIngrediente: Button = findViewById(R.id.btnAddIngredientes)
+
+        btnViewIngredientes.setOnClickListener {
+            val intent = Intent(this, IngredienteActivity::class.java)
+            startActivity(intent)
+        }
+
+        btnAddIngrediente.setOnClickListener {
+            val intent = Intent(this, OrdenCompraActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun obtenerReservas() {
