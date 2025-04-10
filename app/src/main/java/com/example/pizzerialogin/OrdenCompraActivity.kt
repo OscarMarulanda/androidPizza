@@ -16,7 +16,9 @@ import retrofit2.Response
 import java.util.*
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class OrdenCompraActivity : AppCompatActivity() {
     private lateinit var buttonRegistrarCompra: Button
@@ -147,7 +149,9 @@ class OrdenCompraActivity : AppCompatActivity() {
                 UsuarioDocumento = usuarioDocumento
             )
 
-            sendReservaRequest(reservaRequest) // Proceed with reservation
+            lifecycleScope.launch {
+                sendReservaRequest(reservaRequest)
+            }
         }
 
         builder.setNegativeButton("Cancelar") { dialog, _ ->
@@ -186,28 +190,28 @@ class OrdenCompraActivity : AppCompatActivity() {
         return totalSlices
     }
 
-    private fun sendReservaRequest(ordenCompraRequest: OrdenCompraRequest) {
+    private suspend fun sendReservaRequest(ordenCompraRequest: OrdenCompraRequest) {
         val apiService = RetrofitClient.instance
-        val call = apiService.createOrdenCompra(ordenCompraRequest)
 
-        call.enqueue(object : Callback<OrdenCompraResponse> {
-            override fun onResponse(call: Call<OrdenCompraResponse>, response: Response<OrdenCompraResponse>) {
-                if (response.isSuccessful) {
+        try {
+            val response = apiService.createOrdenCompra(ordenCompraRequest) // suspend function
 
-
-                    postOrdenIngrediente()
-
-
+            if (response.isSuccessful) {
+                postOrdenIngrediente() // wait for this to finish
+                withContext(Dispatchers.Main) {
                     Toast.makeText(this@OrdenCompraActivity, "Reserva creada exitosamente", Toast.LENGTH_LONG).show()
-                } else {
+                    startActivity(Intent(this@OrdenCompraActivity, IngredienteActivity::class.java))
+                }
+            } else {
+                withContext(Dispatchers.Main) {
                     Toast.makeText(this@OrdenCompraActivity, "Error al crear reserva", Toast.LENGTH_LONG).show()
                 }
             }
-
-            override fun onFailure(call: Call<OrdenCompraResponse>, t: Throwable) {
+        } catch (e: Exception) {
+            withContext(Dispatchers.Main) {
                 Toast.makeText(this@OrdenCompraActivity, "Error de conexión", Toast.LENGTH_LONG).show()
             }
-        })
+        }
     }
 
     private fun postOrdenIngrediente() {

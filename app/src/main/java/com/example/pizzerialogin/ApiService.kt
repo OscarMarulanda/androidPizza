@@ -25,7 +25,7 @@ interface ApiService {
     fun createReserva(@Body request: ReservaRequest): Call<ReservaResponse>
 
     @POST("orden-compra")
-    fun createOrdenCompra(@Body request: OrdenCompraRequest): Call<OrdenCompraResponse>
+    suspend fun createOrdenCompra(@Body request: OrdenCompraRequest): Response<OrdenCompraResponse>
 
     @POST("orden-ingrediente")
     suspend fun postOrdenIngrediente(@Body request: OrdenIngredienteRequest): Response<OrdenIngredienteResponse>
