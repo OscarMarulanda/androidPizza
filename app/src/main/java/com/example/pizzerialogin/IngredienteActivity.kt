@@ -20,6 +20,11 @@ class IngredienteActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ingrediente)
 
+        val btnLogout = findViewById<Button>(R.id.btnLogOut)
+        btnLogout.setOnClickListener {
+            SessionManager.logout(this)
+        }
+
         recyclerView = findViewById(R.id.recyclerViewIngredientes)
         recyclerView.layoutManager = LinearLayoutManager(this)
 

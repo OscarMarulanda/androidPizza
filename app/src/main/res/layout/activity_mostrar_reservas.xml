@@ -14,17 +14,28 @@
 
         <Button
             android:id="@+id/btnViewIngredientes"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Ver Ingredientes"
-            android:layout_marginEnd="10dp"/>
+            android:layout_weight="1"
+            android:text="Ver Ingredientes" />
 
         <Button
             android:id="@+id/btnAddIngredientes"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Agregar Ingredientes"/>
+            android:layout_weight="1"
+            android:text="Agregar Ingredientes" />
+
+        <Button
+            android:id="@+id/btnLogOut"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.7"
+            android:text="Salir"
+            android:backgroundTint="@android:color/holo_red_dark"
+            android:textColor="@android:color/white" />
     </LinearLayout>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewReservas"

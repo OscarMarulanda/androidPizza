@@ -36,6 +36,11 @@ class Reservar : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_reservar)
 
+        val btnLogout = findViewById<Button>(R.id.btnLogOut)
+        btnLogout.setOnClickListener {
+            SessionManager.logout(this)
+        }
+
         editTextDate = findViewById(R.id.editTextDate)
         editTextTime = findViewById(R.id.editTextTime)
         spinnerContainer = findViewById(R.id.spinnersContainer)

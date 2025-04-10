@@ -20,7 +20,9 @@ import kotlinx.coroutines.launch
 
 class OrdenCompraActivity : AppCompatActivity() {
     private lateinit var buttonRegistrarCompra: Button
+    private lateinit var buttonVerReservas: Button
     private lateinit var spinnerContainer: LinearLayout
+
     private val items = listOf(
         SpinnerOrden("Aceitunas"),
         SpinnerOrden("Cebolla"),
@@ -53,8 +55,14 @@ class OrdenCompraActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_orden_compra)
 
+        val btnLogout = findViewById<Button>(R.id.btnLogOut)
+        btnLogout.setOnClickListener {
+            SessionManager.logout(this)
+        }
+
         spinnerContainer = findViewById(R.id.spinnersContainer)
         buttonRegistrarCompra = findViewById(R.id.buttonOrder)
+        buttonVerReservas = findViewById(R.id.btnViewReservas)
 
         setupAddPizzaButton()
         setupReservaButton()
@@ -69,6 +77,11 @@ class OrdenCompraActivity : AppCompatActivity() {
 
         btnViewIngredientes.setOnClickListener {
             val intent = Intent(this, IngredienteActivity::class.java)
+            startActivity(intent)
+        }
+
+        buttonVerReservas.setOnClickListener {
+            val intent = Intent(this, MostrarReservas::class.java)
             startActivity(intent)
         }
     }

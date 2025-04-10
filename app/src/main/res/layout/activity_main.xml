@@ -8,51 +8,25 @@
     android:background="#000000"
     tools:context=".MainActivity">
 
+    <TextView
+        android:id="@+id/titleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PizzaPaisa"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:textColor="#76c043"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center"
         android:padding="20dp">
-
-        <EditText
-            android:id="@+id/etDocumento"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="48dp"
-            android:hint="Documento"
-            android:textColor="@color/white"
-            android:textColorHint="@color/gray"
-            android:inputType="number" />
-
-        <EditText
-            android:id="@+id/etTelefono"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Teléfono"
-            android:textColor="@color/white"
-            android:textColorHint="@color/gray"
-            android:inputType="phone" />
-
-        <EditText
-            android:id="@+id/etContrasena"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Contraseña"
-            android:textColor="@color/white"
-            android:minHeight="48dp"
-            android:textColorHint="@color/gray"
-            android:inputType="textPassword" />
-
-        <EditText
-            android:id="@+id/etCorreo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Correo"
-            android:textColor="@color/white"
-            android:minHeight="48dp"
-            android:textColorHint="@color/gray"
-            android:inputType="textEmailAddress" />
 
         <EditText
             android:id="@+id/etPrimerNombre"
@@ -75,24 +49,54 @@
             android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/etTipoDocumento"
+            android:id="@+id/etTelefono"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Tipo Documento"
+            android:hint="Teléfono"
+            android:minHeight="48dp"
             android:textColor="@color/white"
             android:textColorHint="@color/gray"
+            android:inputType="phone" />
+
+        <Spinner
+            android:id="@+id/spinnerTipoDocumento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:minHeight="48dp"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/white"
+            android:popupBackground="@color/white"/>
+
+        <EditText
+            android:id="@+id/etDocumento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:hint="Documento"
+            android:textColor="@color/white"
+            android:textColorHint="@color/gray"
             android:inputType="number" />
 
         <EditText
-            android:id="@+id/etTipoUsuario"
+            android:id="@+id/etCorreo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Tipo Usuario"
+            android:hint="Correo"
             android:textColor="@color/white"
             android:minHeight="48dp"
             android:textColorHint="@color/gray"
-            android:inputType="number" />
+            android:inputType="textEmailAddress" />
+
+
+        <EditText
+            android:id="@+id/etContrasena"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Contraseña"
+            android:textColor="@color/white"
+            android:minHeight="48dp"
+            android:textColorHint="@color/gray"
+            android:inputType="textPassword" />
 
 
         <Button

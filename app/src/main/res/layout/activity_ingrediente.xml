@@ -6,19 +6,38 @@
     android:padding="10dp"
     android:background="#121212"> <!-- Dark Background -->
 
-    <Button
-        android:id="@+id/btnViewReservas"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Ver Reservas"
-        android:layout_marginBottom="10dp"/>
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp"
+        android:layout_gravity="center_horizontal">
 
-    <Button
-        android:id="@+id/btnAgregarIngredientes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Agregar ingredientes"
-        android:layout_marginBottom="10dp"/>
+        <Button
+            android:id="@+id/btnViewReservas"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Ver Reservas" />
+
+        <Button
+            android:id="@+id/btnAgregarIngredientes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Agregar ingredientes" />
+
+        <Button
+            android:id="@+id/btnLogOut"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.7"
+            android:text="Salir"
+            android:backgroundTint="@android:color/holo_red_dark"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+
+
 
 
     <TableLayout

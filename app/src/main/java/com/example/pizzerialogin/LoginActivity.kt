@@ -30,25 +30,30 @@ class LoginActivity : AppCompatActivity() {
         sharedPreferences = getSharedPreferences("APP_PREFS", MODE_PRIVATE)
 
         val editTextUsuario = findViewById<EditText>(R.id.editTextUsuario)
-        val editTextCorreo = findViewById<EditText>(R.id.editTextCorreo)
         val editTextContrasena = findViewById<EditText>(R.id.editTextContrasena)
         val btnLogin = findViewById<Button>(R.id.btnLogin)
 
         btnLogin.setOnClickListener {
             val usuarioDocumento = editTextUsuario.text.toString()
-            val correo = editTextCorreo.text.toString()
             val contrasena = editTextContrasena.text.toString()
 
-            if (usuarioDocumento.isNotEmpty() && correo.isNotEmpty() && contrasena.isNotEmpty()) {
-                loginUser(usuarioDocumento, correo, contrasena)
+            if (usuarioDocumento.isNotEmpty() && contrasena.isNotEmpty()) {
+                loginUser(usuarioDocumento,  contrasena)
             } else {
                 Toast.makeText(this, "Por favor, completa todos los campos", Toast.LENGTH_SHORT).show()
             }
         }
+
+        val btnRegistrar: Button = findViewById(R.id.btnRegister)
+        btnRegistrar.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 
-    private fun loginUser(usuarioDocumento: String, correo: String, contrasena: String) {
-        val loginRequest = LoginRequest(usuarioDocumento, correo, contrasena)
+    private fun loginUser(usuarioDocumento: String, contrasena: String) {
+        val loginRequest = LoginRequest(usuarioDocumento, contrasena)
 
         RetrofitClient.instance.login(loginRequest).enqueue(object : Callback<LoginResponse> {
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {

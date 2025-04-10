@@ -13,18 +13,44 @@
         android:orientation="vertical"
         android:padding="16dp"
         android:gravity="center"
-        android:layout_margin="16dp">
+        android:layout_margin="16dp"
+        android:background="@android:color/black">
 
-        <Button
-            android:id="@+id/btnViewIngredientes"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Ver Ingredientes"
-            android:layout_marginEnd="10dp"/>
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
 
-        <!-- Date & Time Selection -->
+            <Button
+                android:id="@+id/btnViewIngredientes"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:minWidth="0dp"
+                android:text="Ver Ingr." />
 
-        <!-- Container for pizza selection -->
+            <Button
+                android:id="@+id/btnViewReservas"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:minWidth="0dp"
+                android:text="Reservas" />
+
+            <Button
+                android:id="@+id/btnLogOut"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.6"
+                android:minWidth="0dp"
+                android:text="Salir"
+                android:backgroundTint="@android:color/holo_red_dark"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+
+
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
