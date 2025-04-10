@@ -91,7 +91,8 @@ class MainActivity : AppCompatActivity() {
             tipoUsuario = 3
         )
 
-        RetrofitClient.instance.registerUser(user).enqueue(object : Callback<RegisterResponse> {
+        val apiService = RetrofitClient.getInstance(this)
+        apiService.registerUser(user).enqueue(object : Callback<RegisterResponse> {
             override fun onResponse(call: Call<RegisterResponse>, response: Response<RegisterResponse>) {
                 if (response.isSuccessful) {
                     val message = response.body()?.message ?: "Registro exitoso"
@@ -111,7 +112,8 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun fetchUserById(userId: String) {
-        RetrofitClient.instance.getUserById(userId).enqueue(object : Callback<ApiResponse> {
+        val apiService = RetrofitClient.getInstance(this)
+        apiService.getUserById(userId).enqueue(object : Callback<ApiResponse> {
             override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
 
                 if (response.isSuccessful) {

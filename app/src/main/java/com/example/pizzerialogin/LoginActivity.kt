@@ -55,7 +55,7 @@ class LoginActivity : AppCompatActivity() {
     private fun loginUser(usuarioDocumento: String, contrasena: String) {
         val loginRequest = LoginRequest(usuarioDocumento, contrasena)
 
-        RetrofitClient.instance.login(loginRequest).enqueue(object : Callback<LoginResponse> {
+        RetrofitClient.getInstance(this@LoginActivity).login(loginRequest).enqueue(object : Callback<LoginResponse> {
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                 if (response.isSuccessful) {
                     SessionManager.userId = usuarioDocumento

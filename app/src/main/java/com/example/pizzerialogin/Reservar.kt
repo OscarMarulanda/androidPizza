@@ -209,7 +209,7 @@ class Reservar : AppCompatActivity() {
     }
 
     private fun sendReservaRequest(reservaRequest: ReservaRequest) {
-        val apiService = RetrofitClient.instance
+        val apiService = RetrofitClient.getInstance(this)
         val call = apiService.createReserva(reservaRequest)
 
         call.enqueue(object : Callback<ReservaResponse> {
@@ -231,7 +231,7 @@ class Reservar : AppCompatActivity() {
     }
 
     private fun sendLineaRequests(idPedido: Int) {
-        val apiService = RetrofitClient.instance
+        val apiService = RetrofitClient.getInstance(this)
 
         for (i in 0 until spinnerContainer.childCount) {
             val row = spinnerContainer.getChildAt(i) as LinearLayout

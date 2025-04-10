@@ -19,16 +19,20 @@ class MostrarReservas: AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var reservasAdapter: ReservasAdapter
-    private val apiService = RetrofitClient.instance
+    private lateinit var apiService: ApiService
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mostrar_reservas)
 
+        apiService = RetrofitClient.getInstance(this)
+
         val btnLogout = findViewById<Button>(R.id.btnLogOut)
         btnLogout.setOnClickListener {
             SessionManager.logout(this)
         }
+
 
         recyclerView = findViewById(R.id.recyclerViewReservas)
         recyclerView.layoutManager = LinearLayoutManager(this)

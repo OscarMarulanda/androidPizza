@@ -191,7 +191,7 @@ class OrdenCompraActivity : AppCompatActivity() {
     }
 
     private suspend fun sendReservaRequest(ordenCompraRequest: OrdenCompraRequest) {
-        val apiService = RetrofitClient.instance
+        val apiService = RetrofitClient.getInstance(this)
 
         try {
             val response = apiService.createOrdenCompra(ordenCompraRequest) // suspend function
@@ -215,7 +215,7 @@ class OrdenCompraActivity : AppCompatActivity() {
     }
 
     private fun postOrdenIngrediente() {
-        val apiService = RetrofitClient.instance
+        val apiService = RetrofitClient.getInstance(this)
 
         lifecycleScope.launch {
             for (i in 0 until spinnerContainer.childCount) {

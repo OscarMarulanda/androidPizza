@@ -48,7 +48,8 @@ class IngredienteActivity : AppCompatActivity() {
     private fun fetchIngredientes() {
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                val response = RetrofitClient.instance.getIngredientes()
+                val apiService = RetrofitClient.getInstance(applicationContext)
+                val response = apiService.getIngredientes()
                 if (response.isSuccessful) {
                     val ingredientes = response.body() ?: emptyList()
                     withContext(Dispatchers.Main) {
